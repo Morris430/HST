@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>選擇組別顯示圖片</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: linear-gradient(to right, #f0f2f5, #dbe9ff);
+      margin: 0;
+      padding: 30px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    select {
+      padding: 10px 15px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    select:hover {
+      border-color: #888;
+    }
+
+    #images-container {
+      margin-top: 30px;
+    }
+
+    .group-images {
+      display: none;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .group-images img {
+      max-width: 80%;
+      margin: 20px auto;
+      display: block;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .group-images img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @media (max-width: 768px) {
+      select {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2>請選擇組別：</h2>
+
+  <select id="groupSelector">
+    <option value="">-- 請選擇 --</option>
+    <option value="group1">第一組</option>
+    <option value="group2">第二組</option>
+    <option value="group3">第三組</option>
+  </select>
+
+  <div id="images-container">
+    <!-- 一組圖片 -->
+    <div class="group-images" id="group1">
+      <img src="images/group1-1.jpg" alt="一組圖1">
+      <img src="images/group1-2.jpg" alt="一組圖2">
+      <img src="images/group1-3.jpg" alt="一組圖3">
+      <img src="images/group1-4.jpg" alt="一組圖4">
+    </div>
+
+    <!-- 二組圖片 -->
+    <div class="group-images" id="group2">
+      <img src="images/group2-1.jpg" alt="二組圖1">
+      <img src="images/group2-2.jpg" alt="二組圖2">
+      <img src="images/group2-3.jpg" alt="二組圖3">
+      <img src="images/group2-4.jpg" alt="二組圖4">
+    </div>
+
+    <!-- 三組圖片 -->
+    <div class="group-images" id="group3">
+      <img src="images/group3-1.jpg" alt="三組圖1">
+      <img src="images/group3-2.jpg" alt="三組圖2">
+      <img src="images/group3-3.jpg" alt="三組圖3">
+      <img src="images/group3-4.jpg" alt="三組圖4">
+    </div>
+  </div>
+
+  <script>
+    const selector = document.getElementById('groupSelector');
+    const groups = document.querySelectorAll('.group-images');
+
+    selector.addEventListener('change', function () {
+      groups.forEach(group => group.style.display = 'none');
+      const selected = selector.value;
+      if (selected) {
+        document.getElementById(selected).style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
