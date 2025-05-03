@@ -37,16 +37,19 @@
     }
 
     .group-images {
-      display: none; /* 一開始隱藏所有圖片 */
       animation: fadeIn 0.5s ease-in-out;
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-bottom: 50px; /* 增加組與組之間的距離 */
+      margin-bottom: 50px;
       padding: 20px;
       border-radius: 10px;
       background-color: #f7f7f7;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .hidden {
+      display: none !important;
     }
 
     .group-images h3 {
@@ -60,12 +63,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 20px; /* 圖片之間的間距 */
+      gap: 20px;
       margin: 15px 0;
     }
 
     .image-pair img {
-      max-width: 45%; /* 每張圖片佔據容器的45%寬度 */
+      max-width: 45%;
       margin: 10px 0;
       display: block;
       border-radius: 10px;
@@ -78,9 +81,8 @@
       box-shadow: 0 6px 15px rgba(0,0,0,0.2);
     }
 
-    /* 對配對圖二、配對圖三和配對圖四做縮小 */
     .image-pair img.pair2, .image-pair img.pair3, .image-pair img.pair4 {
-      max-width: 40%; /* 將配對圖二、配對圖三和配對圖四的寬度設為40% */
+      max-width: 40%;
     }
 
     @keyframes fadeIn {
@@ -95,7 +97,7 @@
       }
 
       .image-pair img {
-        max-width: 80%; /* 在小螢幕上每張圖片佔用更少的寬度 */
+        max-width: 80%;
       }
     }
   </style>
@@ -112,7 +114,7 @@
 
   <div id="images-container">
     <!-- 第一組圖片 -->
-    <div class="group-images" id="group1">
+    <div class="group-images hidden" id="group1">
       <h3>第一組</h3>
       <div class="image-pair">
         <img src="assets/images/group1-1.jpg" alt="一組圖1">
@@ -133,7 +135,7 @@
     </div>
 
     <!-- 第二組圖片 -->
-    <div class="group-images" id="group2">
+    <div class="group-images hidden" id="group2">
       <h3>第二組</h3>
       <div class="image-pair">
         <img src="assets/images/group2-1.jpg" alt="二組圖1">
@@ -154,7 +156,7 @@
     </div>
 
     <!-- 第三組圖片 -->
-    <div class="group-images" id="group3">
+    <div class="group-images hidden" id="group3">
       <h3>第三組</h3>
       <div class="image-pair">
         <img src="assets/images/group3-1.jpg" alt="三組圖1">
@@ -179,16 +181,11 @@
     const selector = document.getElementById('groupSelector');
     const groups = document.querySelectorAll('.group-images');
 
-    // 一開始隱藏所有圖片
-    window.addEventListener('load', () => {
-      groups.forEach(group => group.style.display = 'none');
-    });
-
     selector.addEventListener('change', function () {
-      groups.forEach(group => group.style.display = 'none'); // 隱藏所有組
+      groups.forEach(group => group.classList.add('hidden'));
       const selected = selector.value;
       if (selected) {
-        document.getElementById(selected).style.display = 'flex'; // 顯示選擇的組
+        document.getElementById(selected).classList.remove('hidden');
       }
     });
   </script>
